@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little World 💗</title>
+<style>
+:root{
+  --pink:#f68fa8; --pink2:#ffdce5; --cream:#fff8f6; --text:#6e4b55;
+  --muted:#a7838d; --white:#fff; --shadow:0 12px 35px rgba(150,85,105,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  color:var(--text);background:linear-gradient(135deg,#fff9f7,#fff0f5);
+}
+button,input,textarea{font:inherit}
+a{text-decoration:none;color:inherit}
+.top{
+  min-height:100vh;padding:30px 6vw 45px;position:relative;overflow:hidden;
+}
+.blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.55;z-index:0}
+.b1{width:220px;height:220px;background:#ffd3df;right:-70px;top:20px}
+.b2{width:180px;height:180px;background:#dff7f1;left:-80px;bottom:80px}
+.nav,.hero,.features{position:relative;z-index:1}
+.nav{
+  max-width:1120px;margin:auto;background:rgba(255,255,255,.84);
+  backdrop-filter:blur(12px);border:1px solid #f7dfe6;border-radius:18px;
+  padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+  box-shadow:var(--shadow)
+}
+.brand{font-weight:800;font-size:18px;display:flex;gap:9px;align-items:center}
+.brand span{font-size:22px}
+.navlinks{display:flex;gap:22px;font-size:13px;color:#9a707b}
+.navlinks a:hover{color:var(--pink)}
+.hero{
+  max-width:1120px;margin:65px auto 0;display:grid;grid-template-columns:1.05fr .95fr;
+  gap:55px;align-items:center
+}
+.kicker{color:var(--pink);font-weight:800;letter-spacing:.08em;font-size:14px;text-transform:uppercase}
+h1{font-family:Georgia,serif;font-size:clamp(48px,7vw,82px);line-height:.96;margin:14px 0;color:#684651}
+.lead{font-size:17px;line-height:1.8;color:#94727c;max-width:560px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.btn{border:0;border-radius:14px;padding:13px 20px;cursor:pointer;font-weight:700}
+.primary{background:var(--pink);color:#fff;box-shadow:0 8px 20px #f68fa844}
+.secondary{background:#fff;color:#9b6d79;border:1px solid #f2dce2}
+.photo-card{
+  background:#fff;border-radius:25px;padding:14px;box-shadow:var(--shadow);
+  transform:rotate(2deg);max-width:440px;margin:auto
+}
+.photo{
+  height:420px;border-radius:18px;
+  background:
+  linear-gradient(180deg,rgba(70,40,50,.05),rgba(70,40,50,.12)),
+  url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85') center/cover;
+}
+.caption{padding:16px 9px 5px;font-family:cursive;font-size:22px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:#fff;border:1px solid #f3e0e5;border-radius:16px;padding:17px;text-align:center}
+.stat b{display:block;font-size:22px;color:#e87894}.stat small{color:#a68790}
+.features{max-width:1120px;margin:15px auto 0;display:grid;grid-template-columns:repeat(5,1fr);gap:15px}
+.card{
+  background:rgba(255,255,255,.85);border:1px solid #f1dfe4;border-radius:20px;
+  padding:22px 16px;box-shadow:var(--shadow);cursor:pointer;transition:.2s
+}
+.card:hover{transform:translateY(-5px)}
+.icon{font-size:30px;margin-bottom:10px}.card h3{font-size:15px;margin:0 0 6px}.card p{font-size:12px;color:#a3848d;margin:0;line-height:1.5}
+section{max-width:1120px;margin:80px auto;padding:0 6vw}
+.section-title{text-align:center;margin-bottom:30px}
+.section-title h2{font-family:Georgia,serif;font-size:40px;margin:0 0 8px}.section-title p{color:#a08089}
+.panel{background:#fff;border:1px solid #f1dfe4;border-radius:25px;padding:28px;box-shadow:var(--shadow)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gallery div{height:220px;border-radius:18px;background-size:cover;background-position:center}
+.g1{background-image:url('https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=800&q=80')}
+.g2{background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80')}
+.g3{background-image:url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80')}
+.letter{max-width:700px;margin:auto;background:#fff7fa;border:1px dashed #f0b5c4;padding:28px;border-radius:18px;line-height:1.9}
+.game{display:grid;grid-template-columns:1fr 1fr;gap:20px}.question{font-size:21px;font-weight:700}
+textarea{width:100%;min-height:110px;border:1px solid #efd8df;border-radius:14px;padding:13px;resize:vertical;outline:none}
+footer{text-align:center;padding:50px 20px;color:#aa8992;font-size:13px}
+.modal{position:fixed;inset:0;background:#5a394866;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}
+.modal.show{display:flex}.modalbox{background:#fff;border-radius:24px;padding:28px;max-width:520px;width:100%;box-shadow:0 25px 70px #4b293855}
+.close{float:right;border:0;background:#fff0f4;border-radius:50%;width:34px;height:34px;cursor:pointer}
+@media(max-width:850px){
+ .navlinks{display:none}.hero{grid-template-columns:1fr;margin-top:45px}.photo-card{max-width:500px}
+ .features{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:1fr 1fr}.game{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+ .top{padding:18px 18px 35px}.hero{gap:30px}h1{font-size:53px}.photo{height:330px}
+ .features{grid-template-columns:1fr 1fr}section{padding:0 18px}.gallery{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <nav class="nav">
+    <div class="brand"><span>🎮</span> Alex & Maya</div>
+    <div class="navlinks">
+      <a href="#home">Home</a><a href="#photos">Photos</a><a href="#letters">Letters</a>
+      <a href="#games">Games</a><a href="#qa">Q&A</a><a href="#more">More</a>
+    </div>
+    <div>♡</div>
+  </nav>
+
+  <main class="hero" id="home">
+    <div>
+      <div class="kicker">Because love should be fun, too.</div>
+      <h1>Our Little<br>World 💗</h1>
+      <p class="lead">Tempat kecil untuk menyimpan foto, surat, pertanyaan lucu, permainan, dan semua kenangan kalian meskipun sedang LDR.</p>
+      <div class="actions">
+        <button class="btn primary" onclick="openLetter()">💌 Buka Surat</button>
+        <a class="btn secondary" href="#games">🎮 Main Bersama</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="days">127</b><small>Hari Bersama</small></div>
+        <div class="stat"><b>142 KM</b><small>Jarak Kita</small></div>
+        <div class="stat"><b id="count">12</b><small>Hari Lagi Ketemu</small></div>
+      </div>
+    </div>
+    <div class="photo-card">
+      <div class="photo"></div>
+      <div class="caption">“Jarak boleh jauh, hati tetap dekat.” ♡</div>
+    </div>
+  </main>
+
+  <div class="features" id="more">
+    <div class="card" onclick="scrollToId('photos')"><div class="icon">📷</div><h3>Photo Gallery</h3><p>Album kenangan kita</p></div>
+    <div class="card" onclick="scrollToId('letters')"><div class="icon">💌</div><h3>Love Letters</h3><p>Surat terbuka</p></div>
+    <div class="card" onclick="scrollToId('games')"><div class="icon">🎮</div><h3>Mini Games</h3><p>Main & pahami satu sama lain</p></div>
+    <div class="card" onclick="scrollToId('qa')"><div class="icon">❓</div><h3>Q&A</h3><p>Tanya jawab seru</p></div>
+    <div class="card" onclick="openLetter()"><div class="icon">💗</div><h3>Daily Reminders</h3><p>Pesan harian</p></div>
+  </div>
+</div>
+
+<section id="photos">
+  <div class="section-title"><h2>Our Memories 📸</h2><p>Kumpulan momen yang ingin selalu kita ingat.</p></div>
+  <div class="panel gallery"><div class="g1"></div><div class="g2"></div><div class="g3"></div></div>
+</section>
+
+<section id="letters">
+  <div class="section-title"><h2>Open When… 💌</h2><p>Pilih surat sesuai perasaanmu hari ini.</p></div>
+  <div class="panel">
+    <div class="actions" style="justify-content:center">
+      <button class="btn secondary" onclick="showMessage('Kangen')">🥺 Saat kamu kangen</button>
+      <button class="btn secondary" onclick="showMessage('Sedih')">😢 Saat kamu sedih</button>
+      <button class="btn secondary" onclick="showMessage('Bahagia')">🥰 Saat kamu bahagia</button>
+    </div>
+  </div>
+</section>
+
+<section id="games">
+  <div class="section-title"><h2>Today's Game 🎮</h2><p>Jawab pertanyaan ini, lalu pasanganmu bisa melihat jawabannya.</p></div>
+  <div class="panel game">
+    <div><div class="question">Apa hal kecil yang paling kamu suka dari aku?</div><p style="color:#a08089">Tulis jawabanmu di sini. 💗</p></div>
+    <div><textarea id="answer" placeholder="Tulis jawabanmu..."></textarea><button class="btn primary" style="margin-top:10px" onclick="saveAnswer()">Kirim 💕</button><p id="saved" style="color:#e87894;font-weight:700"></p></div>
+  </div>
+</section>
+
+<section id="qa">
+  <div class="section-title"><h2>Our Q&A 💬</h2><p>Ruang kecil untuk pertanyaan random setiap hari.</p></div>
+  <div class="panel" style="text-align:center">
+    <h3>Kalau kita bisa pergi ke mana saja besok, kamu mau ke mana?</h3>
+    <button class="btn primary" onclick="showMessage('Jawaban')">Lihat pertanyaan berikutnya ✨</button>
+  </div>
+</section>
+
+<footer>Made with ❤️ for two people who are far apart, but still together.</footer>
+
+<div class="modal" id="modal">
+ <div class="modalbox"><button class="close" onclick="closeModal()">×</button><h2 id="modalTitle">💌 Untukmu</h2><p id="modalText" style="line-height:1.9"></p></div>
+</div>
+
+<script>
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+function openLetter(){showMessage('Surat')}
+function showMessage(type){
+ const data={
+  'Kangen':['🥺 Saat kamu kangen','Kalau hari ini terasa panjang, ingat ya: ada seseorang di sini yang selalu memilih kamu, setiap hari. Jarak cuma sementara. ❤️'],
+  'Sedih':['😢 Saat kamu sedih','Tarik napas pelan-pelan. Kamu tidak sendirian. Ceritakan semuanya nanti, aku akan dengarkan. 💗'],
+  'Bahagia':['🥰 Saat kamu bahagia','Aku ikut senang melihat kamu bahagia. Simpan momen ini baik-baik, lalu ceritakan semuanya kepadaku. ✨'],
+  'Surat':['💌 Surat kecil untukmu','Terima kasih sudah bertahan bersama meskipun kita tidak selalu bisa bertemu. Semoga suatu hari nanti jarak ini hanya jadi cerita yang kita kenang sambil tersenyum. Love you. ❤️'],
+  'Jawaban':['✨ Pertanyaan berikutnya','Apa satu tempat yang paling ingin kamu kunjungi bersamaku setelah LDR ini selesai?']
+ };
+ document.getElementById('modalTitle').textContent=data[type][0];
+ document.getElementById('modalText').textContent=data[type][1];
+ document.getElementById('modal').classList.add('show');
+}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function saveAnswer(){
+ const v=document.getElementById('answer').value.trim();
+ document.getElementById('saved').textContent=v?'Jawaban tersimpan 💗':'Tulis jawaban dulu ya 😊';
+}
+</script>
+</body>
+</html>
